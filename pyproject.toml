@@ -1,0 +1,21 @@
+[project]
+name = "eval_tests_with_groundedtruths"
+version = "0.1.0"
+description = "eval_tests_with_groundedtruths using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.186.1,<1.0.0",
+]
+
+[project.scripts]
+kickoff = "eval_tests_with_groundedtruths.main:kickoff"
+run_crew = "eval_tests_with_groundedtruths.main:kickoff"
+plot = "eval_tests_with_groundedtruths.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"

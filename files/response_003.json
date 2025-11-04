@@ -1,0 +1,9 @@
+{
+  "id": "003",
+  "agent_name": "customer_service_agent",
+  "response_data": {
+    "answer": "O produto chegará em 10 dias úteis",
+    "confidence": 0.6,
+    "category": "packing"
+  }
+}

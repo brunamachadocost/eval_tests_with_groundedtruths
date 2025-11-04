@@ -1,92 +1,73 @@
 #!/usr/bin/env python
 import os
-from random import randint
-
-from pydantic import BaseModel
-
 from crewai.flow import Flow, listen, start
-
 from crewai import LLM
 
-from eval_tests_with_groundedtruths.crews.poem_crew.poem_crew import PoemCrew
+from eval_tests_with_groundedtruths.models.evaluation_models import EvaluationState
+from eval_tests_with_groundedtruths.crews.evaluation_crew.evaluation_crew import EvaluationCrew
 
 
-class PoemState(BaseModel):
-    sentence_count: int = 1
-    poem: str = ""
-
-# Light Agent/Agente atomico executado fora da crew
-SearcherSpecialist = Agent(
-    role="Searcher Specialist", 
-    goal="",
-    backstory="",
-    tools=[]
-)
-
-
-llm = LLM(
-        model="openai/openai/gpt-4o",
-        base_url=f'{os.getenv("BASE_URL_ASIMOV")}/v2',
-        api_key=os.getenv("ASIMOV_TOKEN"),
-        temperature=0.3,
-        # top_p=top_p,
-        # n=n,
-        # max_tokens=max_tokens,
-    )
-
- 
-
-class EvalTestsWithGroundedtruthFlow(Flow):
-
-    @start
-    def run(self):
-        self.state.temperature = None
-
-    @listen(run)
-    def get_wheather(self):
-        agent = SearcherSpecialist("whats the weather in tokyo?")
-        result = agent.kickoff()
-
-
-        # self.state.temperature = self.get_temperature()
-
-    def get_temperature(self):
-        return 20
-
-    ###############################
+class AgentEvaluationFlow(Flow[EvaluationState]):
+    """Flow para avaliação de agents com gabaritos"""
 
     @start()
-    def generate_sentence_count(self):
-        print("Generating sentence count")
-        self.state.sentence_count = randint(1, 5)
+    def start_evaluation(self):
+        """Inicia o processo de avaliação"""
+        print("🚀 Iniciando processo de avaliação de agents com gabaritos...")
+        
+        # Verificar se as pastas existem
+        if not os.path.exists("files"):
+            print("❌ Pasta 'files' não encontrada")
+            return
+        
+        if not os.path.exists("groundedtruths"):
+            print("❌ Pasta 'groundedtruths' não encontrada")
+            return
+        
+        print("✅ Pastas de arquivos encontradas")
+        print("📁 Iniciando escaneamento de arquivos...")
 
-    @listen(generate_sentence_count)
-    def generate_poem(self):
-        print("Generating poem")
-        result = (
-            PoemCrew()
-            .crew()
-            .kickoff(inputs={"sentence_count": self.state.sentence_count})
-        )
+    @listen(start_evaluation)
+    def run_evaluation_crew(self):
+        """Executa a crew de avaliação completa"""
+        print("🤖 Executando crew de avaliação...")
+        
+        try:
+            # Criar e executar a crew de avaliação
+            evaluation_crew = EvaluationCrew()
+            result = evaluation_crew.crew().kickoff()
+            
+            print("✅ Crew de avaliação executada com sucesso!")
+            print(f"📄 Resultado: {result.raw}")
+            
+            # Marcar como concluído
+            self.state.report_generated = True
+            
+        except Exception as e:
+            print(f"❌ Erro na execução da crew: {str(e)}")
+            raise
 
-        print("Poem generated", result.raw)
-        self.state.poem = result.raw
-
-    @listen(generate_poem)
-    def save_poem(self):
-        print("Saving poem")
-        with open("poem.txt", "w") as f:
-            f.write(self.state.poem)
+    @listen(run_evaluation_crew)
+    def finalize_evaluation(self):
+        """Finaliza o processo de avaliação"""
+        if self.state.report_generated:
+            print("🎉 Processo de avaliação concluído com sucesso!")
+            print("📋 Relatório gerado: EVALUATION_REPORT.md")
+            print("💡 Verifique o arquivo para ver os resultados detalhados")
+        else:
+            print("⚠️ Processo de avaliação não foi concluído corretamente")
 
 
 def kickoff():
-    poem_flow = EvalTestsWithGroundedtruthFlow()
-    poem_flow.kickoff()
+    """Executa o flow de avaliação"""
+    evaluation_flow = AgentEvaluationFlow()
+    evaluation_flow.kickoff()
 
 
 def plot():
-    poem_flow = EvalTestsWithGroundedtruthFlow()
-    poem_flow.plot()
+    """Gera o plot do flow de avaliação"""
+    evaluation_flow = AgentEvaluationFlow()
+    evaluation_flow.plot()
 
 
 if __name__ == "__main__":

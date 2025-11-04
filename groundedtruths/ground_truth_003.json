@@ -1,0 +1,8 @@
+{
+  "id": "003", 
+  "expected_response": {
+    "answer": "O produto chegará em 1 dias úteis",
+    "confidence": 0.65,
+    "category": "packing"
+  }
+}

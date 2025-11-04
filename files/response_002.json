@@ -1,0 +1,9 @@
+{
+  "id": "002",
+  "agent_name": "customer_service_agent",
+  "response_data": {
+    "answer": "esta a caminho",
+    "confidence": 0.7,
+    "category": "delivery"
+  }
+}

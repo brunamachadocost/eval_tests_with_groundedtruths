@@ -1,0 +1,8 @@
+{
+  "id": "002", 
+  "expected_response": {
+    "answer": "esta a caminho",
+    "confidence": 0.7,
+    "category": "delivery"
+  }
+}

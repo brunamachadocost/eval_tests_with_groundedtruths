@@ -1,0 +1,8 @@
+{
+  "id": "001", 
+  "expected_response": {
+    "answer": "O produto chegará entre 3 a 5 dias úteis",
+    "confidence": 0.90,
+    "category": "shipping"
+  }
+}

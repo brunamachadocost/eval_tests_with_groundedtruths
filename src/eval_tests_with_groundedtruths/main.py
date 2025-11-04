@@ -69,6 +69,5 @@ def plot():
     evaluation_flow = AgentEvaluationFlow()
     evaluation_flow.plot()
 
-
 if __name__ == "__main__":
     kickoff()

@@ -54,3 +54,7 @@ For support, questions, or feedback regarding the {{crew_name}} Crew or crewAI.
 - [Chat with our docs](https://chatg.pt/DWjSBZn)
 
 Let's create wonders together with the power and simplicity of crewAI.
+
+
+eval "$(ssh-agent -s)" 
+ssh-add -K ~/.ssh/ssh_key_ambev_github

@@ -17,7 +17,12 @@ evaluate_exact_match:
   description: >
     Para cada par de arquivos (resposta, gabarito) identificado na task anterior,
     realize uma avaliação de match exato campo por campo.
-    Compare os dados de resposta com o gabarito esperado.
+    IMPORTANTE: Compare APENAS o campo 'response_data' do arquivo de resposta 
+    com o campo 'expected_response' do arquivo de gabarito. 
+    Ignore todos os outros campos como id, agent_name, file_name, metadata, etc.
+    Use a ExactMatchTool passando somente esses dois objetos:
+    - response_data: o conteúdo do campo response_data do arquivo de resposta
+    - groundtruth_data: o conteúdo do campo expected_response do arquivo de gabarito
     Calcule percentuais de acurácia e identifique campos com divergências.
     Documente discrepâncias específicas para análise posterior.
   expected_output: >

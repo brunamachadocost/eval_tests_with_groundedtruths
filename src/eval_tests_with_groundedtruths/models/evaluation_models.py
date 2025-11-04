@@ -8,6 +8,8 @@ class ResponseData(BaseModel):
     id: str = Field(..., description="Identificador único da resposta")
     agent_name: Optional[str] = Field(None, description="Nome do agent que gerou a resposta")
     response_data: Dict[str, Any] = Field(..., description="Dados da resposta do agent")
+    file_name: Optional[str] = Field(None, description="Nome do arquivo processado (para OCR)")
+    metadata: Optional[Dict[str, Any]] = Field(None, description="Metadados adicionais (para OCR)")
     timestamp: Optional[datetime] = Field(None, description="Timestamp de quando a resposta foi gerada")
 
 
@@ -15,6 +17,7 @@ class GroundTruthData(BaseModel):
     """Estrutura dos JSONs de gabarito"""
     id: str = Field(..., description="Identificador único correspondente à resposta")
     expected_response: Dict[str, Any] = Field(..., description="Resposta esperada/gabarito")
+    file_name: Optional[str] = Field(None, description="Nome do arquivo processado (para OCR)")
     description: Optional[str] = Field(None, description="Descrição opcional do caso de teste")
 
 

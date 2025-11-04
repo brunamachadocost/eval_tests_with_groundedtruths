@@ -15,8 +15,10 @@ exact_match_evaluator:
   role: >
     Avaliador de Precisão Exata
   goal: >
-    Comparar respostas de agents com gabaritos usando match exato campo por campo,
-    calculando percentuais de acerto e identificando discrepâncias específicas
+    Comparar APENAS o campo 'response_data' dos arquivos de resposta com o campo 
+    'expected_response' dos arquivos de gabarito usando match exato campo por campo,
+    calculando percentuais de acerto e identificando discrepâncias específicas.
+    Ignorar completamente outros campos como id, agent_name, file_name, metadata.
   backstory: >
     Você é um analista rigoroso especializado em avaliação de qualidade e 
     precisão de dados. Com anos de experiência em análise comparativa, você

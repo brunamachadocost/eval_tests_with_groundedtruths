@@ -40,8 +40,8 @@ class JSONFileReaderTool(BaseTool):
                 "response_files_count": len(response_files),
                 "groundtruth_files_count": len(groundtruth_files),
                 "matched_pairs_count": len(matched_pairs),
-                "response_files": [{"id": r.id, "agent_name": r.agent_name} for r in response_files],
-                "groundtruth_files": [{"id": g.id, "description": g.description} for g in groundtruth_files],
+                "response_files": [{"id": r.id, "agent_name": r.agent_name, "file_name": getattr(r, 'file_name', None)} for r in response_files],
+                "groundtruth_files": [{"id": g.id, "file_name": getattr(g, 'file_name', None), "description": getattr(g, 'description', None)} for g in groundtruth_files],
                 "matched_pairs": matched_pairs,
                 "unmatched_responses": [r.id for r in response_files if not any(r.id == pair[0].id for pair in matched_pairs)],
                 "unmatched_groundtruths": [g.id for g in groundtruth_files if not any(g.id == pair[1].id for pair in matched_pairs)]

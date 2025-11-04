@@ -1,0 +1,24 @@
+{
+  "id": "019a4ee5-a815-7492-ab2e-3cba029e6734",
+  "agent_name": "ocr_extraction_agent",
+  "file_name": "0001-000322160BIGBOXS.A.00001_00000574SANITARYPROCESSINTEGRATIONLATIN.pdf",
+  "response_data": {
+    "cuit_emisor": "30715592904",
+    "cuit_receptor": "33508358529",
+    "razon_social": "SANITARY PROCESS INTEGRATION LATIN AMERICA SRL",
+    "punto_de_venta": "00001",
+    "nro_comprobante": "00000574",
+    "fecha_comprobante": "26/06/2024",
+    "codigo_afip": "001",
+    "letra_afip": "A",
+    "orden_compra": "4519115484",
+    "importe": "146,65",
+    "moneda": "EUR",
+    "check": "Yes"
+  },
+  "metadata": {
+    "extraction_timestamp": "2025-11-04T13:44:42.041628+00:00Z",
+    "processing_status": "WEBHOOK_FAILED",
+    "model_used": "openai/gpt-4-vision"
+  }
+}

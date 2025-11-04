@@ -24,6 +24,12 @@ class AgentEvaluationFlow(Flow[EvaluationState]):
             print("❌ Pasta 'groundedtruths' não encontrada")
             return
         
+        self.state.evaluation_results = []
+        self.state.groundtruth_files = []
+        self.state.matched_pairs = []
+        self.state.response_files = []
+        self.state.report_generated = False
+        self.state.summary = None
         print("✅ Pastas de arquivos encontradas")
         print("📁 Iniciando escaneamento de arquivos...")
 

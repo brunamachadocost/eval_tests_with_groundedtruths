@@ -42,9 +42,9 @@ class EvaluationSummary(BaseModel):
 
 class EvaluationState(BaseModel):
     """Estado do flow de avaliação"""
-    response_files: List[str] = Field(default_factory=list, description="Lista de arquivos de resposta encontrados")
-    groundtruth_files: List[str] = Field(default_factory=list, description="Lista de arquivos de gabarito encontrados")
-    matched_pairs: List[tuple] = Field(default_factory=list, description="Pares de arquivos (resposta, gabarito) com mesmo ID")
-    evaluation_results: List[ExactMatchResult] = Field(default_factory=list, description="Resultados das avaliações individuais")
-    summary: Optional[EvaluationSummary] = Field(None, description="Resumo consolidado da avaliação")
-    report_generated: bool = Field(False, description="Flag indicando se o relatório foi gerado")
+    response_files: List[str] = Field(default_factory=list, description="Lista de arquivos de resposta encontrados", exclude= True)
+    groundtruth_files: List[str] = Field(default_factory=list, description="Lista de arquivos de gabarito encontrados", exclude= True)
+    matched_pairs: List[tuple] = Field(default_factory=list, description="Pares de arquivos (resposta, gabarito, exclude= True) com mesmo ID", exclude= True)
+    evaluation_results: List[ExactMatchResult] = Field(default_factory=list, description="Resultados das avaliações individuais", exclude= True)
+    summary: Optional[EvaluationSummary] = Field(None, description="Resumo consolidado da avaliação", exclude= True)
+    report_generated: bool = Field(False, description="Flag indicando se o relatório foi gerado", exclude= True)

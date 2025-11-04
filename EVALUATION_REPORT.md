@@ -1,6 +1,6 @@
 # Relatório de Avaliação de Agents
 
-**Data/Hora**: 2025-11-04 14:09:26  
+**Data/Hora**: 2025-11-04 14:44:38  
 **Total de Avaliações**: 2
 
 ## 📊 Resumo Quantitativo
@@ -31,8 +31,8 @@
 
 | ID | Acurácia | Campos Corretos | Total Campos | Status |
 |-----|----------|----------------|--------------|---------|
-| 019a4ee5-a815-7492-ab2e-3cba029e6734 | 100.0% | 12 | 12 | ✅ Perfeito |
-| 019a4ee5-9fbc-765b-ae21-213ef022cb80 | 100.0% | 12 | 12 | ✅ Perfeito |
+| 019a4ee5-a815-7492-ab2e-3cba029e6734 | 100.0% | 10 | 10 | ✅ Perfeito |
+| 019a4ee5-9fbc-765b-ae21-213ef022cb80 | 100.0% | 10 | 10 | ✅ Perfeito |
 
 ## 🔧 Campos com Divergências
 
